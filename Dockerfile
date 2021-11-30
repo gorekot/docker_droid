@@ -13,10 +13,6 @@ RUN apt-get -yqq update \
     && TZ=Asia/Kolkata \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN git clone https://github.com/mirror/make \
-    && cd make && ./bootstrap && ./configure && make CFLAGS="-O3" \
-    && sudo install ./make /usr/bin/make
-
 RUN git clone https://github.com/ninja-build/ninja.git \
     && cd ninja && git reset --hard 8fa4d05 && ./configure.py --bootstrap \
     && sudo install ./ninja /usr/bin/ninja
